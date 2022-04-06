@@ -2,11 +2,11 @@ import { Room, Client } from "colyseus";
 import { MyRoomState } from "./schema/MyRoomState";
 
 export class MyRoom extends Room<MyRoomState> {
+  progress: string;
 
   onCreate (options: any) {
     this.setState(new MyRoomState());
-    this.onMessage("type", (client, message) => {});
-
+    this.progress = options["progress"] || "home";
   }
 
   onJoin (client: Client, options: any) {
